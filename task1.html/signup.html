@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <meta charset="utf 8">
-   <meta name="viewport" content="device width, initial scale=1">
-   <title>Sign-up page</title>
-   <link rel="stylesheet" href="signup.css">
+
+    <meta charset="utf-8">
+    <title>Learning CSS</title>
+    <meta name="viewport" content="device width, initial scale=1">
+    <link rel="stylesheet" href="task1.css/signup.css">
 
 </head>
-
 <body>
   <div class="container">
     <h1>Welcome to Lorem Ipsum !</h1>
@@ -51,4 +51,37 @@
         <label for="gender-other">Other</label>
 
       </div>
+      
+      <div class="form-group">
+        <label for="preferred-language">Preferred Language</label>
+
+        <select id="preferred-language" name="preferred-language" required>
+          <option value="">Select Language</option>
+          <option value="english">English</option>
+          <option value="chinese">Chinese</option>
+          <option value="french">French</option>
+          <option value="spanish">Spanish</option>
+          <option value="german">German</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+
+        <label for="interests">Interests</label>
+        <textarea id="interests" name="interests" rows="4" required></textarea>
+
+      </div>
+      
+      <div class="form-group">
+
+        <input type="checkbox" id="terms" name="terms" required>
+        <label for="terms">I agree to the terms and conditions</label>
+
+      </div>
+
+    </form>
+   </div>
+
+</body>
+</html>
       
