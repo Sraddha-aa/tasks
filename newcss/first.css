@@ -1,3 +1,154 @@
-body{
-    background-color: aquamarine;
+body {
+    font-family: Arial, sans-serif;
+    margin:0;
+    padding: 0;
+    background-image: url("../taskimages/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .container {
+    max-width: 700px;
+    margin: 50px auto;
+    background-color: #ece9e9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px r box-sizing: border-box;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+
+ .slide{
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
+  position: relative;
 }
+
+.slide img {
+  display: block;
+  width: 100%;
+  height: 50vh;
+  margin-bottom:auto;
+}
+
+.slide-text {
+  position: absolute;
+  left:0;
+  bottom: 0;
+  color:#FFF;
+  width: 100% ;
+  padding: 15px 25px;
+  box-sizing: border-box;
+  margin-left: 20px;
+  background-color: rgba(0,0,0,0.2);
+}
+
+
+
+.slide h3{
+  margin: 0;
+}
+
+.slide p{
+  color: #FFF;
+}
+
+.cycle-prev, 
+.cycle-next {
+  position: absolute;
+  top: 30%;
+  background-color: #cb985d ;
+  color: #555050;
+  padding: 1px 10px;
+  display: block;
+  cursor: pointer;
+  font-size: 130%;
+  z-index: 1000;
+   transition: all 3s;
+   opacity: 0.5s;
+   margin-left: 20px;
+ }
+
+ .cycle-next{
+   right: 0;
+ }
+
+ .cycle-slideshow:hover .cycle-prev,
+ .cycle-slideshow:hover .cycle-next {
+   opacity: 1;
+ }
+
+ .cycle-pager{
+   position: absolute;
+   top: 20px;
+   z-index: 1003;
+   width: 100%;
+   text-align: center;
+ }
+
+
+ .cycle-pager span{
+  text-indent: -999px ;
+  display: inline-block ;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #e69437 ;
+  margin: 10px 10px;
+  cursor: pointer;
+}
+
+.cycle-pager .cycle-pager-active{
+  background-color: #000;
+}
+
+ 
+  
