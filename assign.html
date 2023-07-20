@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>Signup page</title>
-  <meta name="viewport" content="device width, initial scale=1">
+  
   <link rel="stylesheet" href= "newcss/first.css">
   <script type="text/javascript" src="js/jquery.js"></script>
   <script type="text/javascript" src="js/cycle2.js"></script>
@@ -16,49 +16,46 @@
         <h1><strong>Welcome to Lorem Ipsum!</strong></h1>
          <h2> Create an account</h2>
         
-        <form>
+        <form onsubmit="return validateForm()">
            <div class="form-group">
             <label for="first-name">First Name</label>
-            <input type="text" id="first-name" name="first-name" required>
+            <input type="text" id="first-name" name="first-name" placeholder="first name" required>
            </div>
       
            <div class="form-group">
             <label for="last-name">Last Name</label>
-            <input type="text" id="last-name" name="last-name" required>
+            <input type="text" id="last-name" name="last-name" placeholder="last name"required>
            </div>
 
            <div class="form-group">
-             <label for="email-id">Email-Id</label>
-             <input type="text" id="email-id" name="email-id" required>
+             <label for="email-id">Email id</label>
+             <input type="text" id="email-id" name="email-id" placeholder="email"required>
            </div>
 
            <div class="form-group">
              <label for="password">Password</label>
-             <input type="text" id="password" name="password" required>
+             <input type="password" id="password" name="password" placeholder="password" required>
            </div>
 
            <div class="form-group">
              <label for="confirm-password">Confirm password</label>
-             <input type="text" id="confirm-password" name="confirm-password" required>
+             <input type="password" id="confirm-password" name="confirm-password" placeholder="confirm password"required>
            </div>
-
-           <div class="form-group gender">
-             <label> Gender </label> 
+      
+           <div class="form-group">
+             <label>Gender</label>
                
-             <div class="radio-group1">
+             <div class="gender-options">
                <input type="radio" id="gender-male" name="gender" value="male" required>
-               <label for="gender-male">Male</label>
-             </div>
-
-            <div class="radio-group2">
+               <label for="gender-male" >Male</label>
+      
                <input type="radio" id="gender-female" name="gender" value="female" required>
                <label for="gender-female">Female</label>
-            </div>
 
-            <div class="radio-group3">
-               <input type="radio" id="gender-other" name="gender" value="other" required>
+               <input type="radio" id="gender-other" name="gender" value="Others" required>
                <label for="gender-other">Others</label>
-            </div>
+
+             </div>
            </div>
       
            <div class="form-group">
@@ -76,27 +73,35 @@
 
            <div class="form-group">
 
-              <label for="interests">Interests</label>
-              <textarea id="interests" name="interests" rows="4" required></textarea>
+              <label for="interests">Interests (Maximum 100 characters)</label>
+              <textarea id="interests" name="interests" rows="4" maxlength="100" required></textarea>
+              
 
            </div>
+
+
+           <div class="form-group">
+              
+              <div class="form-group-checkbox">
+               <input type="checkbox" id="terms" name="terms" required>
+               <label for="terms">I agree to the terms and conditions</label>
+              </div>
+
+           </div>
+
       
            <div class="form-group">
-
-              <input type="checkbox" id="terms" name="terms" required>
-              <label for="terms">I agree to the terms and conditions</label>
-
+             <button type="submit">Signup</button>
            </div>
-
-           <button type="submit">Signup</button>
-        </form>
-
+       </div>
+      </form>
+  
      </div>
     
   
   
    <div class="image-banner-container cycle-slideshow" data-cycle-slides=".slide" data-cycle-pause-on-hover="true">
-        <span class="cycle-prev">&laquo;</span>
+        <span class="cycle-prev">&laquo</span>
         <span class="cycle-next">&raquo</span>
         <span class="cycle-pager"></span>
    
@@ -104,7 +109,7 @@
             <img src="taskimages/hippo.jpg" alt="hippo">
             <div class="slide-text">
                 <h3> Hippo here! </h3>
-                <p>Yes, I am hippo <a href="#" class="btn-a"> Call to action!</a></p>
+                <p>Yes, I am hippo <a href="#" class="btn-a"> Click here!</a></p>
             </div>
         </div>
    
@@ -112,7 +117,7 @@
             <img src="taskimages/antelope.jpg" alt="antelope">
             <div class="slide-text">
                 <h3>Antelope here! </h3>
-                <p>Yes, I am antelope <a href="#" class="btn-a"> Call to action!</a> </p>
+                <p>Yes, I am antelope <a href="#" class="btn-a"> Click here!</a> </p>
             </div>
         </div>
 
@@ -120,9 +125,33 @@
             <img src="taskimages/ostrich.jpg">
             <div class="slide-text">
                <h3>Ostrich here! </h3>
-               <p>Yes, I am ostrich <a href="#" class="btn-a"> Call to action!</a> </p>
+               <p>Yes, I am ostrich <a href="#" class="btn-a"> Click here!</a> </p>
         </div>
       </div>
+
+      <script>
+         function validateForm(){
+            var firstName = document.getElementById('first-name').value;
+            var lastName = document.getElementById('last-name').value;
+            var email = document.getElementById('email-id').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirm-password').value;
+            var gender = document.querySelector('input[name="gender"]:checked');
+            var preferredLanguage = document.getElementById('preferred-language').value;
+            var interests = document.getElementById('interests').value;
+            var termsChecked = document.getElementById('terms').checked;
+         }
+         if (firstName.trim() === '') {
+           alert('Please enter your First Name.');
+           return false;
+         }
+         if (lastName.trim() === '') {
+           alert('Please enter your Last Name.');
+           return false;
+        }
+
+          
+      </script>
    
   
    

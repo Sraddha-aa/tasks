@@ -15,7 +15,7 @@ body {
 .container h2 {
   text-align: center;
   margin-bottom: 20px;
-  color:#FFF;
+  color:#ca9055;
 }
 
 .container {
@@ -45,7 +45,7 @@ body {
   
 h1 {
     text-align: center;
-    color: #FFF;
+    color: #ca9055;
   }
   
 .form-group {
@@ -67,11 +67,7 @@ textarea {
     border-radius: 5px;
     border: 1px solid #ccc;
   }
-  
-textarea {
-    resize: vertical;
-  }
-  
+
 button {
     display: block;
     width: 100%;
@@ -88,9 +84,8 @@ button:hover {
     background-color: #1c5509;
   }
   
-input[type="radio"],
-input[type="checkbox"] {
-    margin-right: 2px;
+input[type="radio"] {
+    margin-right:0;
   }
 
 .slide{
@@ -179,17 +174,54 @@ input[type="checkbox"] {
   background-color: #000;
 }
 
-.gender {
-  display: flex;
+.btn-a{
+  padding: 6px 10px;
+  border-radius:5px;
+  font-weight: bold;
+  text-transform:uppercase;
+  background-color: #b36c39;
+  color: #54371d ;
+  font-size:84%;
+  margin-left: 10px;
 }
 
-.radio-group1,
-.radio-group2,
-.radio-group3 {
-  width:50%;
-  flex: 2 2 1; 
+.btn-a :hover{
+  background-color: #FFF ;
+  color: #b36c39;
 }
 
-.radio-group1{
+.form-group {
+  margin-bottom: 20px;
+  padding-right: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+}
+
+.form-group input[type="radio"] {
+  margin-right: 5px;
+  margin-bottom: -2px; /* Remove space between radio button icon and text */
+}
+
+.gender-options {
+  display:-webkit-inline-box;
+}
+
+.gender-options label {
+  margin-top: 2px;
+  margin-left: 10px;
+  margin-right: 60px;
+}
+
+.form-group-checkbox{
+  display:-webkit-inline-box;
+}
+.form-group-checkbox label{
   margin-left: 20px;
 }
+  
+
+
+
