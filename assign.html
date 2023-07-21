@@ -4,64 +4,76 @@
 <head>
   <meta charset="utf-8">
   <title>Signup page</title>
-  
+
+  <link rel="stylesheet" href="fonts/fontawesome/svgs/solid">
   <link rel="stylesheet" href= "newcss/first.css">
-  <script type="text/javascript" src="js/jquery.js"></script>
-  <script type="text/javascript" src="js/cycle2.js"></script>
+  <script type="text/javascript" src="javascriptfile/jquery.js"></script>
+  <script type="text/javascript" src="javascriptfile/cycle2.js"></script>
+  
 </head>
 
 <body>
 
       <div class="container">
         <h1><strong>Welcome to Lorem Ipsum!</strong></h1>
-         <h2> Create an account</h2>
-        
-        <form onsubmit="return validateForm()">
-           <div class="form-group">
+        <h2> Create an account</h2>
+
+        <form id="signup-form">
+
+          <div class="form-group">
             <label for="first-name">First Name</label>
-            <input type="text" id="first-name" name="first-name" placeholder="first name" required>
-           </div>
-      
-           <div class="form-group">
+            <input type="text" id="first-name" name="first-name" placeholder="first name" required pattern="[a-zA-Z\s]+" title="Please enter a valid first name (only alphabets and spaces allowed)">
+            <span class="error-message">This is a required field.</span>
+          </div>
+    
+          <div class="form-group">
             <label for="last-name">Last Name</label>
-            <input type="text" id="last-name" name="last-name" placeholder="last name"required>
-           </div>
+            <input type="text" id="last-name" name="last-name" placeholder="last name" required pattern="[a-zA-Z\s]+" title="Please enter a valid Last Name (only alphabets and spaces allowed)">
+            <span class="error-message">This is a required field.</span>
+          </div>
 
            <div class="form-group">
              <label for="email-id">Email id</label>
-             <input type="text" id="email-id" name="email-id" placeholder="email"required>
+             <input type="text" id="email-id" name="email-id" placeholder="email" required pattern="[^\s@]+@[^\s@]+\.[^\s@]+" title="Please enter a valid email id">
+             <span class="error-message">This is a required field</span>
            </div>
 
            <div class="form-group">
              <label for="password">Password</label>
-             <input type="password" id="password" name="password" placeholder="password" required>
+             <div class="password-input-container">
+                <input type="password" id="password" name="password" placeholder="password" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}+" title="Password should be at least 8 characters long and contain at least one lowercase letter, one digit, and one special character.">
+                <span class="error-message">This is a required field</span>
+                <span class="password-toggle-icon" onclick="passwordToggleVisibility()">
+                 <i class="fas fa-eye"> </i>
+                </span>
+              </div>
            </div>
 
            <div class="form-group">
              <label for="confirm-password">Confirm password</label>
-             <input type="password" id="confirm-password" name="confirm-password" placeholder="confirm password"required>
+             <input type="password" id="confirm-password" name="confirm-password" placeholder="confirm password" required pattern="">
+             <span class="error-message">Passwords do not match</span>
            </div>
       
            <div class="form-group">
              <label>Gender</label>
-               
+           
              <div class="gender-options">
-               <input type="radio" id="gender-male" name="gender" value="male" required>
+               <input type="radio" id="gender-male" name="gender" value="male">
                <label for="gender-male" >Male</label>
       
-               <input type="radio" id="gender-female" name="gender" value="female" required>
+               <input type="radio" id="gender-female" name="gender" value="female">
                <label for="gender-female">Female</label>
 
-               <input type="radio" id="gender-other" name="gender" value="Others" required>
+               <input type="radio" id="gender-other" name="gender" value="Others">
                <label for="gender-other">Others</label>
-
              </div>
+             <span class="error-message">Please select any of the listed items.</span>
            </div>
       
            <div class="form-group">
               <label for="preferred-language">Preferred Language</label>
-
-               <select id="preferred-language" name="preferred-language" required>
+               <select id="preferred-language" name="preferred-language">
                   <option value="">Select Language</option>
                   <option value="english">English</option>
                   <option value="chinese">Chinese</option>
@@ -69,34 +81,240 @@
                   <option value="spanish">Spanish</option>
                   <option value="german">German</option>
                </select>
+               <span class="error-message">Please select any of these languages.</span>
             </div>
 
            <div class="form-group">
-
               <label for="interests">Interests (Maximum 100 characters)</label>
-              <textarea id="interests" name="interests" rows="4" maxlength="100" required></textarea>
-              
-
+              <textarea id="interests" name="interests" rows="4" maxlength="100"></textarea>
+              <span class="error-message">Must be only 100 character long.</span>
            </div>
 
 
            <div class="form-group">
-              
               <div class="form-group-checkbox">
-               <input type="checkbox" id="terms" name="terms" required>
+               <input type="checkbox" id="terms" name="terms">
                <label for="terms">I agree to the terms and conditions</label>
               </div>
-
            </div>
-
       
            <div class="form-group">
              <button type="submit">Signup</button>
            </div>
-       </div>
-      </form>
   
-     </div>
+        </form>
+  
+      </div> 
+      <style>
+        /* Style the input textboxes with a black border */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea,
+        select {
+          border: 1px solid #666363; /* Black border */
+        }
+    
+        /* Style the error message text */
+        input:invalid,
+        textarea:invalid,
+        select:invalid {
+          border-color: #ff0000; /* Red border for invalid input */
+    }
+
+    /* Style the error message tooltip */
+    input:invalid + .error-message,
+    textarea:invalid + .error-message,
+    select:invalid + .error-message {
+      display: block;
+    }
+
+    .error-message {
+      display: none;
+      color: #ff0000; /* Red text color for the error message */
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    /* Hide the default browser tooltip */
+    input::-webkit-validation-bubble,
+    textarea::-webkit-validation-bubble,
+    select::-webkit-validation-bubble {
+      display: none;
+    }
+
+    /* Style the eye icon */
+    .password-toggle-icon {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      position: absolute;
+      right: 10px;
+      top: 0;
+      bottom: 0;
+    }
+  </style>
+
+       
+ <script>
+  // Function to hide error messages for required fields
+  function hideErrorMessages() {
+      const errorMessages = document.querySelectorAll('.error-message');
+      errorMessages.forEach(errorMessage => {
+        errorMessage.style.display = 'none';
+      });
+    }
+
+     // Function to perform live validations while the user is entering data
+     function liveValidateInput(inputElement, regexPattern, errorMessage) {
+      inputElement.addEventListener('input', function () {
+        var inputValue = inputElement.value.trim();
+        if (!regexPattern.test(inputValue)) {
+          inputElement.setCustomValidity(errorMessage);
+        } else {
+          inputElement.setCustomValidity('');
+        }
+      });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Function to validate the form on submission
+  function validateForm(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Check all form fields for validity
+    var form = document.querySelector('form');
+    var isValid = form.checkValidity();
+
+    // Show error messages for invalid fields
+    var errorMessages = form.querySelectorAll('.error-message');
+    errorMessages.forEach(function (errorMessage) {
+      var inputField = errorMessage.previousElementSibling;
+      if (!inputField.validity.valid) {
+        errorMessage.style.display = 'block';
+      } else {
+        errorMessage.style.display = 'none';
+      }
+    });
+
+    // If the form is valid, proceed with form submission
+    if (isValid) {
+      form.submit();
+    }
+  }
+
+  // Function to check if passwords match and show/hide the confirm password validation message
+  function validateConfirmPassword() {
+    var password = document.getElementById('password').value;
+    var confirmPassword = document.getElementById('confirm-password');
+
+    if (password !== confirmPassword.value) {
+      confirmPassword.setCustomValidity('Passwords do not match.');
+    } else {
+      confirmPassword.setCustomValidity('');
+    }
+  }
+
+
+
+  
+
+
+
+
+
+
+
+  // Set up live validations for various form fields
+  document.addEventListener('DOMContentLoaded', function () {
+    var firstName = document.getElementById('first-name');
+    liveValidateInput(
+      firstName,
+      /^[a-zA-Z\s]+$/,
+      'Please enter a valid first name (only alphabets and spaces allowed)'
+    );
+
+    var lastName = document.getElementById('last-name');
+    liveValidateInput(
+      lastName,
+      /^[a-zA-Z\s]+$/,
+      'Please enter a valid Last Name (only alphabets and spaces allowed).'
+    );
+
+    var email = document.getElementById('email-id');
+    liveValidateInput(
+      email,
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      'Please enter a valid email id.'
+    );
+
+    var password = document.getElementById('password');
+    liveValidateInput(
+      password,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      'Password should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.'
+    );
+
+    var confirmPassword = document.getElementById('confirm-password');
+    password.addEventListener('input', validateConfirmPassword);
+    confirmPassword.addEventListener('input', validateConfirmPassword);
+
+    var form = document.querySelector('form');
+    form.addEventListener('submit', validateForm);
+  });
+
+
+  // Add form submit event listener to show error messages for required fields
+  var form = document.getElementById('signup-form');
+      form.addEventListener('submit', function (event) {
+        // Prevent form submission if there are errors
+        event.preventDefault();
+
+        // Show error messages for required fields that are empty
+        const requiredFields = form.querySelectorAll('[required]');
+        requiredFields.forEach(field => {
+          if (!field.value.trim()) {
+            const errorMessage = field.nextElementSibling;
+            errorMessage.style.display = 'block';
+          }
+        });
+
+        // Show error messages for invalid fields
+        var errorMessages = form.querySelectorAll('.error-message');
+        errorMessages.forEach(function (errorMessage) {
+          var inputField = errorMessage.previousElementSibling;
+          if (!inputField.validity.valid) {
+            errorMessage.style.display = 'block';
+          } else {
+            errorMessage.style.display = 'none';
+          }
+        });
+        // If the form is valid, proceed with form submission
+        if (form.checkValidity()) {
+          form.submit();
+        }
+      });
+  </script>
+
+
+
+
+
+
     
   
   
@@ -128,30 +346,6 @@
                <p>Yes, I am ostrich <a href="#" class="btn-a"> Click here!</a> </p>
         </div>
       </div>
-
-      <script>
-         function validateForm(){
-            var firstName = document.getElementById('first-name').value;
-            var lastName = document.getElementById('last-name').value;
-            var email = document.getElementById('email-id').value;
-            var password = document.getElementById('password').value;
-            var confirmPassword = document.getElementById('confirm-password').value;
-            var gender = document.querySelector('input[name="gender"]:checked');
-            var preferredLanguage = document.getElementById('preferred-language').value;
-            var interests = document.getElementById('interests').value;
-            var termsChecked = document.getElementById('terms').checked;
-         }
-         if (firstName.trim() === '') {
-           alert('Please enter your First Name.');
-           return false;
-         }
-         if (lastName.trim() === '') {
-           alert('Please enter your Last Name.');
-           return false;
-        }
-
-          
-      </script>
    
   
    

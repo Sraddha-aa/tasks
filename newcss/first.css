@@ -15,19 +15,19 @@ body {
 .container h2 {
   text-align: center;
   margin-bottom: 20px;
-  color:#ca9055;
+  color:#985b22;
 }
 
 .container {
-  color: #ccc;
+  color: #0a0a0a;
   display: block;
   max-width: 50%;
   height:auto;
   margin-top: 100px;
-  background-color: #54371d;
+  background-color: #FFF;
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 2px 5px;
+  box-shadow:0 2px 5px;
   margin:0 auto;
   box-sizing: border-box;
 }
@@ -45,7 +45,7 @@ body {
   
 h1 {
     text-align: center;
-    color: #ca9055;
+    color: #985b22;
   }
   
 .form-group {
@@ -84,8 +84,13 @@ button:hover {
     background-color: #1c5509;
   }
   
-input[type="radio"] {
+input[type="radio"],[type="checkbox"] {
     margin-right:0;
+    cursor: pointer;
+    width: 20px ;
+    height: 20px ;
+    padding: 5px ;
+    border: 2px solid #000 ;
   }
 
 .slide{
@@ -206,21 +211,36 @@ input[type="radio"] {
 }
 
 .gender-options {
-  display:-webkit-inline-box;
+  display:-webkit-inline-flex;
 }
 
 .gender-options label {
-  margin-top: 2px;
-  margin-left: 10px;
+  margin-top: 6px;
+  margin-left: 4px;
   margin-right: 60px;
 }
 
+.gender-options input{
+  margin-top: 5px;
+}
+
 .form-group-checkbox{
-  display:-webkit-inline-box;
+  display:-webkit-inline-flex;
+  align-items: center;
+
 }
 .form-group-checkbox label{
   margin-left: 20px;
 }
+
+.error-message {
+  display: none; /* Hide the error messages initially */
+  color: #ff0000;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
   
 
 
