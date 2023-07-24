@@ -1,338 +1,100 @@
 <!DOCTYPE html>
 <html>
-    
 <head>
   <meta charset="utf-8">
-  <title>Signup page</title>
-
-  <link rel="stylesheet" href="fonts/fontawesome/svgs/solid">
-  <link rel="stylesheet" href= "newcss/first.css">
-  <script type="text/javascript" src="javascriptfile/jquery.js"></script>
-  <script type="text/javascript" src="javascriptfile/cycle2.js"></script>
-  
+  <title>Text box</title>
 </head>
-
 <body>
-
-      <div class="container">
-        <h1><strong>Welcome to Lorem Ipsum!</strong></h1>
-        <h2> Create an account</h2>
-
-        <form>
-          <div class="form-group">
-            <label for="first-name">First Name</label>
-            <input type="text" id="first-name" name="first-name" placeholder="first name">
-            <span class="error-message">Please enter a valid First Name.</span>
-          </div>
-      
-           <div class="form-group">
-            <label for="last-name">Last Name</label>
-            <input type="text" id="last-name" name="last-name" placeholder="last name" >
-            <span class="error-message">Please enter a valid Last Name.</span>
-           </div>
-
-           <div class="form-group">
-             <label for="email-id">Email id</label>
-             <input type="text" id="email-id" name="email-id" placeholder="email">
-             <span class="error-message">Please enter a valid Email id</span>
-           </div>
-
-           <div class="form-group">
-             <label for="password">Password</label>
-             <div class="password-input-container">
-                <input type="password" id="password" name="password" placeholder="password">
-                <span class="error-message">Password should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.'</span>
-                <span class="password-toggle-icon" onclick="passwordToggleVisibility()">
-                 <i class="fas fa-eye"> </i>
-                </span>
-              </div>
-           </div>
-
-           <div class="form-group">
-             <label for="confirm-password">Confirm password</label>
-             <input type="password" id="confirm-password" name="confirm-password" placeholder="confirm password">
-             <span class="error-message">Passwords do not match</span>
-           </div>
-      
-           <div class="form-group">
-             <label>Gender</label>
-           
-             <div class="gender-options">
-               <input type="radio" id="gender-male" name="gender" value="male">
-               <label for="gender-male" >Male</label>
-      
-               <input type="radio" id="gender-female" name="gender" value="female">
-               <label for="gender-female">Female</label>
-
-               <input type="radio" id="gender-other" name="gender" value="Others">
-               <label for="gender-other">Others</label>
-             </div>
-             <span class="error-message">Please select any of the listed items.</span>
-           </div>
-      
-           <div class="form-group">
-              <label for="preferred-language">Preferred Language</label>
-               <select id="preferred-language" name="preferred-language">
-                  <option value="">Select Language</option>
-                  <option value="english">English</option>
-                  <option value="chinese">Chinese</option>
-                  <option value="french">French</option>
-                  <option value="spanish">Spanish</option>
-                  <option value="german">German</option>
-               </select>
-               <span class="error-message">Please select any of these languages.</span>
-            </div>
-
-           <div class="form-group">
-              <label for="interests">Interests (Maximum 100 characters)</label>
-              <textarea id="interests" name="interests" rows="4" maxlength="100"></textarea>
-              <span class="error-message">Must be only 100 character long.</span>
-           </div>
-
-
-           <div class="form-group">
-              <div class="form-group-checkbox">
-               <input type="checkbox" id="terms" name="terms">
-               <label for="terms">I agree to the terms and conditions</label>
-              </div>
-           </div>
-      
-           <div class="form-group">
-             <button type="submit">Signup</button>
-           </div>
-  
-        </form>
-  
-      </div> 
-      <style>
-        /* Style the input textboxes with a black border */
-        input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        textarea,
-        select {
-          border: 2px solid #000000; /* Black border */
-        }
+  <div class="container">
+    <h1>Text box</h1>
+    <input type="text" id="text-input" placeholder="Enter text">
+    <p class="error-message" id="text-error"></p> 
+    <button type="button" id="add-button">Add</button>
     
-        /* Style the error message text */
-        input:invalid,
-        textarea:invalid,
-        select:invalid {
-          border-color: #ff0000; /* Red border for invalid input */
+    <div id="text-list"></div>
+  </div>
+    
+  <script>
+
+    var count=0;
+
+    function addText() {
+      var inputElement = document.getElementById('text-input');
+      var text = inputElement.value.trim();
+
+      if (text === '') {
+        document.getElementById('text-error').textContent = 'Enter a text';
+        return;
+      }
+        document.getElementById('text-error').textContent = '';
+
+       var textList = document.getElementById('text-list');
+       var newElement = document.createElement('div');
+  
+     
+       if (count % 2 == 0){
+         newElement.style.color= 'red';
+      }
+       else{
+         newElement.style.color= 'green';
+      }
+
+      var deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
+      deleteButton.addEventListener('click', function() {
+        textList.removeChild(newElement);
+       }); 
+
+      newElement.textContent = text;
+      newElement.appendChild(deleteButton);
+      textList.appendChild(newElement);
+
+      count ++;
+      inputElement.value = '';
     }
 
-    /* Style the error message tooltip */
-    input:invalid + .error-message,
-    textarea:invalid + .error-message,
-    select:invalid + .error-message {
-      display: block;
+    document.addEventListener('DOMContentLoaded', function () {
+      var addButton = document.getElementById('add-button');
+      addButton.addEventListener('click', addText);
+    });
+
+  </script>
+
+  <style>
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #text-list {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    #text-list div {
+      margin-bottom: 5px;
     }
 
     .error-message {
-      display: none;
-      color: #ff0000; /* Red text color for the error message */
-      font-size: 12px;
-      font-weight: bold;
+      color: red;
+      font-size: 14px;
       margin-top: 5px;
     }
 
-    /* Hide the default browser tooltip */
-    input::-webkit-validation-bubble,
-    textarea::-webkit-validation-bubble,
-    select::-webkit-validation-bubble {
-      display: none;
-    }
-
-    /* Style the eye icon */
-    .password-toggle-icon {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      position: absolute;
-      right: 10px;
-      top: 0;
-      bottom: 0;
-    }
   </style>
-
-       
- <script>
-
-  // Function to validate the form on submission
-  function validateForm(event) {
-    event.preventDefault(); // Prevent form submission
-
-    // Check all form fields for validity
-    var form = document.querySelector('form');
-    var isValid = form.checkValidity();
-
-    // Show error messages for invalid fields
-    var errorMessages = form.querySelectorAll('.error-message');
-    errorMessages.forEach(function (errorMessage) {
-      var inputField = errorMessage.previousElementSibling;
-      if (!inputField.validity.valid) {
-        errorMessage.style.display = 'block';
-      } else {
-        errorMessage.style.display = 'none';
-      }
-    });
-
-    // If the form is valid, proceed with form submission
-    if (isValid) {
-      form.submit();
-    }
-  }
-
-
-  // Function to perform live validations while the user is entering data
-  function liveValidateInput(inputElement, regexPattern, errorMessage) {
-    inputElement.addEventListener('input', function () {
-      var inputValue = inputElement.value.trim();
-      if (!regexPattern.test(inputValue)) {
-        inputElement.setCustomValidity(errorMessage);
-      } else {
-        inputElement.setCustomValidity('');
-      }
-    });
-  }
-
-  // Function to check if passwords match and show/hide the confirm password validation message
-  function validateConfirmPassword() {
-    var password = document.getElementById('password').value;
-    var confirmPassword = document.getElementById('confirm-password');
-
-    if (password !== confirmPassword.value) {
-      confirmPassword.setCustomValidity('Passwords do not match.');
-    } else {
-      confirmPassword.setCustomValidity('');
-    }
-  }
-
-  // Set up live validations for various form fields
-  document.addEventListener('DOMContentLoaded', function () {
-    var firstName = document.getElementById('first-name');
-    liveValidateInput(
-      firstName,
-      /^[a-zA-Z\s]+$/,
-      'Please enter a valid first name (only alphabets and spaces allowed)'
-    );
-
-    var lastName = document.getElementById('last-name');
-    liveValidateInput(
-      lastName,
-      /^[a-zA-Z\s]+$/,
-      'Please enter a valid Last Name (only alphabets and spaces allowed).'
-    );
-
-    var email = document.getElementById('email-id');
-    liveValidateInput(
-      email,
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      'Please enter a valid email id.'
-    );
-
-    var password = document.getElementById('password');
-    liveValidateInput(
-      password,
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-      'Password should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.'
-    );
-
-    var confirmPassword = document.getElementById('confirm-password');
-    password.addEventListener('input', validateConfirmPassword);
-    confirmPassword.addEventListener('input', validateConfirmPassword);
-
-    var form = document.querySelector('form');
-    form.addEventListener('submit', validateForm);
-  });
-
-
-  function togglePasswordVisibility() {
-    var passwordInput = document.getElementById('password');
-    var passwordToggleIcon = document.querySelector('.password-toggle-icon');
-
-    if (passwordInput.type === 'password') {
-      passwordInput.type = 'text';
-      passwordToggleIcon.innerHTML = '<i class="fas fa-eye-slash"></i>';
-    } else {
-      passwordInput.type = 'password';
-      passwordToggleIcon.innerHTML = '<i class="fas fa-eye"></i>';
-    }
-  }
-
- </script>
-    
-  
-  
-   <div class="image-banner-container cycle-slideshow" data-cycle-slides=".slide" data-cycle-pause-on-hover="true">
-        <span class="cycle-prev">&laquo</span>
-        <span class="cycle-next">&raquo</span>
-        <span class="cycle-pager"></span>
-   
-        <div class="slide">
-            <img src="taskimages/hippo.jpg" alt="hippo">
-            <div class="slide-text">
-                <h3> Hippo here! </h3>
-                <p>Yes, I am hippo <a href="#" class="btn-a"> Click here!</a></p>
-            </div>
-        </div>
-   
-        <div class="slide">
-            <img src="taskimages/antelope.jpg" alt="antelope">
-            <div class="slide-text">
-                <h3>Antelope here! </h3>
-                <p>Yes, I am antelope <a href="#" class="btn-a"> Click here!</a> </p>
-            </div>
-        </div>
-
-        <div class="slide">
-            <img src="taskimages/ostrich.jpg">
-            <div class="slide-text">
-               <h3>Ostrich here! </h3>
-               <p>Yes, I am ostrich <a href="#" class="btn-a"> Click here!</a> </p>
-        </div>
-      </div>
-   
-  
-   
-  
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-      
-
