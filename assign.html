@@ -18,31 +18,30 @@
         <h1><strong>Welcome to Lorem Ipsum!</strong></h1>
         <h2> Create an account</h2>
 
-        <form id="signup-form">
-
+        <form>
           <div class="form-group">
             <label for="first-name">First Name</label>
-            <input type="text" id="first-name" name="first-name" placeholder="first name" required pattern="[a-zA-Z\s]+" title="Please enter a valid first name (only alphabets and spaces allowed)">
-            <span class="error-message">This is a required field.</span>
+            <input type="text" id="first-name" name="first-name" placeholder="first name">
+            <span class="error-message">Please enter a valid First Name.</span>
           </div>
-    
-          <div class="form-group">
+      
+           <div class="form-group">
             <label for="last-name">Last Name</label>
-            <input type="text" id="last-name" name="last-name" placeholder="last name" required pattern="[a-zA-Z\s]+" title="Please enter a valid Last Name (only alphabets and spaces allowed)">
-            <span class="error-message">This is a required field.</span>
-          </div>
+            <input type="text" id="last-name" name="last-name" placeholder="last name" >
+            <span class="error-message">Please enter a valid Last Name.</span>
+           </div>
 
            <div class="form-group">
              <label for="email-id">Email id</label>
-             <input type="text" id="email-id" name="email-id" placeholder="email" required pattern="[^\s@]+@[^\s@]+\.[^\s@]+" title="Please enter a valid email id">
-             <span class="error-message">This is a required field</span>
+             <input type="text" id="email-id" name="email-id" placeholder="email">
+             <span class="error-message">Please enter a valid Email id</span>
            </div>
 
            <div class="form-group">
              <label for="password">Password</label>
              <div class="password-input-container">
-                <input type="password" id="password" name="password" placeholder="password" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}+" title="Password should be at least 8 characters long and contain at least one lowercase letter, one digit, and one special character.">
-                <span class="error-message">This is a required field</span>
+                <input type="password" id="password" name="password" placeholder="password">
+                <span class="error-message">Password should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.'</span>
                 <span class="password-toggle-icon" onclick="passwordToggleVisibility()">
                  <i class="fas fa-eye"> </i>
                 </span>
@@ -51,7 +50,7 @@
 
            <div class="form-group">
              <label for="confirm-password">Confirm password</label>
-             <input type="password" id="confirm-password" name="confirm-password" placeholder="confirm password" required pattern="">
+             <input type="password" id="confirm-password" name="confirm-password" placeholder="confirm password">
              <span class="error-message">Passwords do not match</span>
            </div>
       
@@ -112,7 +111,7 @@
         input[type="password"],
         textarea,
         select {
-          border: 1px solid #666363; /* Black border */
+          border: 2px solid #000000; /* Black border */
         }
     
         /* Style the error message text */
@@ -160,37 +159,6 @@
 
        
  <script>
-  // Function to hide error messages for required fields
-  function hideErrorMessages() {
-      const errorMessages = document.querySelectorAll('.error-message');
-      errorMessages.forEach(errorMessage => {
-        errorMessage.style.display = 'none';
-      });
-    }
-
-     // Function to perform live validations while the user is entering data
-     function liveValidateInput(inputElement, regexPattern, errorMessage) {
-      inputElement.addEventListener('input', function () {
-        var inputValue = inputElement.value.trim();
-        if (!regexPattern.test(inputValue)) {
-          inputElement.setCustomValidity(errorMessage);
-        } else {
-          inputElement.setCustomValidity('');
-        }
-      });
-    }
-
-
-
-
-
-
-
-
-
-
-
-
 
   // Function to validate the form on submission
   function validateForm(event) {
@@ -217,6 +185,19 @@
     }
   }
 
+
+  // Function to perform live validations while the user is entering data
+  function liveValidateInput(inputElement, regexPattern, errorMessage) {
+    inputElement.addEventListener('input', function () {
+      var inputValue = inputElement.value.trim();
+      if (!regexPattern.test(inputValue)) {
+        inputElement.setCustomValidity(errorMessage);
+      } else {
+        inputElement.setCustomValidity('');
+      }
+    });
+  }
+
   // Function to check if passwords match and show/hide the confirm password validation message
   function validateConfirmPassword() {
     var password = document.getElementById('password').value;
@@ -228,16 +209,6 @@
       confirmPassword.setCustomValidity('');
     }
   }
-
-
-
-  
-
-
-
-
-
-
 
   // Set up live validations for various form fields
   document.addEventListener('DOMContentLoaded', function () {
@@ -278,43 +249,20 @@
   });
 
 
-  // Add form submit event listener to show error messages for required fields
-  var form = document.getElementById('signup-form');
-      form.addEventListener('submit', function (event) {
-        // Prevent form submission if there are errors
-        event.preventDefault();
+  function togglePasswordVisibility() {
+    var passwordInput = document.getElementById('password');
+    var passwordToggleIcon = document.querySelector('.password-toggle-icon');
 
-        // Show error messages for required fields that are empty
-        const requiredFields = form.querySelectorAll('[required]');
-        requiredFields.forEach(field => {
-          if (!field.value.trim()) {
-            const errorMessage = field.nextElementSibling;
-            errorMessage.style.display = 'block';
-          }
-        });
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      passwordToggleIcon.innerHTML = '<i class="fas fa-eye-slash"></i>';
+    } else {
+      passwordInput.type = 'password';
+      passwordToggleIcon.innerHTML = '<i class="fas fa-eye"></i>';
+    }
+  }
 
-        // Show error messages for invalid fields
-        var errorMessages = form.querySelectorAll('.error-message');
-        errorMessages.forEach(function (errorMessage) {
-          var inputField = errorMessage.previousElementSibling;
-          if (!inputField.validity.valid) {
-            errorMessage.style.display = 'block';
-          } else {
-            errorMessage.style.display = 'none';
-          }
-        });
-        // If the form is valid, proceed with form submission
-        if (form.checkValidity()) {
-          form.submit();
-        }
-      });
-  </script>
-
-
-
-
-
-
+ </script>
     
   
   
@@ -353,4 +301,38 @@
 </body>
 </html>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
       
+
