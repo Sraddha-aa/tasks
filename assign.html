@@ -1,100 +1,422 @@
 <!DOCTYPE html>
 <html>
+    
 <head>
   <meta charset="utf-8">
-  <title>Text box</title>
-</head>
-<body>
-  <div class="container">
-    <h1>Text box</h1>
-    <input type="text" id="text-input" placeholder="Enter text">
-    <p class="error-message" id="text-error"></p> 
-    <button type="button" id="add-button">Add</button>
-    
-    <div id="text-list"></div>
-  </div>
-    
-  <script>
+  <title>Signup page</title>
 
-    var count=0;
-
-    function addText() {
-      var inputElement = document.getElementById('text-input');
-      var text = inputElement.value.trim();
-
-      if (text === '') {
-        document.getElementById('text-error').textContent = 'Enter a text';
-        return;
-      }
-        document.getElementById('text-error').textContent = '';
-
-       var textList = document.getElementById('text-list');
-       var newElement = document.createElement('div');
+  <link rel="stylesheet" href="fonts/fontawesome/svgs/solid">
+  <link rel="stylesheet" href= "newcss/first.css">
+  <script type="text/javascript" src="javascriptfile/jquery.js"></script>
+  <script type="text/javascript" src="javascriptfile/cycle2.js"></script>
   
-     
-       if (count % 2 == 0){
-         newElement.style.color= 'red';
-      }
-       else{
-         newElement.style.color= 'green';
-      }
+</head>
 
-      var deleteButton = document.createElement('button');
-      deleteButton.textContent = 'Delete';
-      deleteButton.addEventListener('click', function() {
-        textList.removeChild(newElement);
-       }); 
+<body>
 
-      newElement.textContent = text;
-      newElement.appendChild(deleteButton);
-      textList.appendChild(newElement);
+      <div class="container">
+        <h1><strong>Welcome to Lorem Ipsum!</strong></h1>
+        <h2> Create an account</h2>
 
-      count ++;
-      inputElement.value = '';
+        <form id="create-form-group">
+          <div class="form-group">
+            <label for="first-name">First Name*</label>
+            <input type="text" id="first-name" name="first-name" placeholder="first name">
+            <span class="error-message">Please enter a valid First Name.</span>
+            <p>Error message</p>
+          </div>
+      
+           <div class="form-group">
+            <label for="last-name">Last Name*</label>
+            <input type="text" id="last-name" name="last-name" placeholder="last name" >
+            <span class="error-message">Please enter a valid Last Name.</span>
+            <p>Error message</p>
+           </div>
+
+           <div class="form-group">
+             <label for="email-id">Email id*</label>
+             <input type="text" id="email-id" name="email-id" placeholder="email">
+             <span class="error-message">Please enter a valid Email id</span>
+             <p>Error message</p>
+           </div>
+
+           <div class="form-group">
+             <label for="password">Password*</label>
+             <div class="password-input-container">
+                <input type="password" id="password" name="password" placeholder="password">
+                <span class="error-message">Password should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.'</span>
+                <p>Error message</p>
+              </div>
+           </div>
+
+           <div class="form-group">
+             <label for="confirm-password">Confirm password*</label>
+             <input type="password" id="confirm-password" name="confirm-password" placeholder="confirm password">
+             <span class="error-message">Passwords do not match</span>
+             <p>Error message</p>
+           </div>
+      
+           <div class="form-group">
+             <label>Gender</label>
+           
+             <div class="gender-options">
+               <input type="radio" id="gender-male" name="gender" value="male">
+               <label for="gender-male" >Male</label>
+      
+               <input type="radio" id="gender-female" name="gender" value="female">
+               <label for="gender-female">Female</label>
+
+               <input type="radio" id="gender-other" name="gender" value="Others">
+               <label for="gender-other">Others</label>
+             </div>
+             <span class="error-message">Please select any of the listed items.</span>
+             <p>Error message</p>
+           </div>
+      
+           <div class="form-group">
+              <label for="preferred-language">Preferred Language</label>
+               <select id="preferred-language" name="preferred-language">
+                  <option value="">Select Language</option>
+                  <option value="english">English</option>
+                  <option value="chinese">Chinese</option>
+                  <option value="french">French</option>
+                  <option value="spanish">Spanish</option>
+                  <option value="german">German</option>
+               </select>
+               <span class="error-message">Please select any of these languages.</span>
+               <p>Error message</p>
+            </div>
+
+           <div class="form-group">
+              <label for="interests">Interests (Maximum 100 characters)</label>
+              <textarea id="interests" name="interests" rows="4" maxlength="100"></textarea>
+              <span class="error-message">Must be only 100 character long.</span>
+              <p>Error message</p>
+           </div>
+
+
+           <div class="form-group">
+              <div class="form-group-checkbox">
+               <input type="checkbox" id="terms" name="terms">
+               <label for="terms">I agree to the terms and conditions*</label>
+              </div>
+           </div>
+      
+           <div class="form-group">
+             <button type="submit">Signup</button>
+           </div>
+  
+        </form>
+  
+      </div> 
+      <style>
+        
+        /* Style the input textboxes with a black border */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea,
+        select {
+          border: 2px solid #000000; /* Black border */
+        }
+    
+        /* Style the error message text */
+        input:invalid,
+        textarea:invalid,
+        select:invalid {
+          border-color: #ff0000; /* Red border for invalid input */
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
-      var addButton = document.getElementById('add-button');
-      addButton.addEventListener('click', addText);
-    });
-
-  </script>
-
-  <style>
-    .container {
-      max-width: 400px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-    }
-
-    button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    #text-list {
-      margin-top: 20px;
-      font-size: 16px;
-    }
-
-    #text-list div {
-      margin-bottom: 5px;
+    /* Style the error message tooltip */
+    input:invalid + .error-message,
+    textarea:invalid + .error-message,
+    select:invalid + .error-message {
+      display: block;
     }
 
     .error-message {
-      color: red;
-      font-size: 14px;
-      margin-top: 5px;
+      display: none;
+      color: #ff0000; /* Red text color for the error message */
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    /* Hide the default browser tooltip */
+    input::-webkit-validation-bubble,
+    textarea::-webkit-validation-bubble,
+    select::-webkit-validation-bubble {
+      display: none;
+    }
+
+    .form-group p{
+      display: block;
+      font-size: 15px;
+      color: red ;
+      margin-top: 2px;
+      visibility: hidden;
+    }
+
+    .error input{
+      border:1px solid red;
+    }
+
+    .error p{
+      visibility: hidden;
+    }
+
+    .success input{
+      border: 1px solid rgb(59, 164, 59);
+
+    }
+
+    .success p{
+      visibility: hidden;
     }
 
   </style>
+
+       
+ <script>
+
+
+   // Select all the form fields and error message elements
+    const form = document.querySelector('#create-form-group');
+    const firstName = document.querySelector('#first-name');
+    const lastName = document.querySelector("#last-name");
+    const email = document.querySelector('#email-id');
+    const password = document.querySelector("#password");
+    const confirmPassword = document.querySelector('#confirm-password');
+    const genderOptions = document.querySelectorAll('input[name="gender"]');
+    const preferredLanguageSelect = document.querySelector('#preferred-language');
+    const interestsTextArea = document.querySelector('#interests');
+    const termsCheckbox = document.querySelector('#terms');
+
+    firstName.addEventListener('input', () => validateFirstName());
+    lastName.addEventListener('input', () => validateLastName());
+    email.addEventListener('input', () => validateEmail());
+    password.addEventListener('input', () => validatePassword());
+    confirmPassword.addEventListener('input', () => validateConfirmPassword());
+    genderOptions.forEach((option) => option.addEventListener('change', () => validateGender()));
+    preferredLanguageSelect.addEventListener('change', () => validatePreferredLanguage());
+    interestsTextArea.addEventListener('input', () => validateInterests());
+    termsCheckbox.addEventListener('change', () => validateTermsCheckbox());
+
+    function validateForm() {
+    const inputContainers = form.querySelectorAll('.form-group');
+    let isFormValid = true;
+    
+    inputContainers.forEach((container) => {
+      const inputField = container.querySelector('input, select, textarea');
+      const errorMessageElement = container.querySelector('.error-message');
+      
+      if (inputField.value.trim() === "") {
+        setError(inputField, "This field cannot be empty");
+        isFormValid = false;
+      } else {
+        setSuccess(inputField);
+      }
+    });
+
+      // Call individual field validation functions only if fields are not empty
+        if (firstName.value.trim() !== "") isFormValid = validateFirstName() && isFormValid;
+        if (lastName.value.trim() !== "") isFormValid = validateLastName() && isFormValid;
+        if (email.value.trim() !== "") isFormValid = validateEmail() && isFormValid;
+        if (password.value.trim() !== "") isFormValid = validatePassword() && isFormValid;
+        if (confirmPassword.value.trim() !== "") isFormValid = validateConfirmPassword() && isFormValid;
+        isFormValid = validateGender() && isFormValid;
+        isFormValid = validatePreferredLanguage() && isFormValid;
+        if (interestsTextArea.value.trim() !== "") isFormValid = validateInterests() && isFormValid;
+        isFormValid = validateTermsCheckbox() && isFormValid;
+
+      return isFormValid;
+    }
+
+  signupButton.addEventListener('click', (event) => {
+    if (!validateForm()) {
+      event.preventDefault(); // Prevent form submission if validation fails
+    }
+  });
+
+  
+
+     function validateFirstName() {
+      if (firstName.value.trim() === "") {
+        setError(firstName, "First name cannot be empty");
+      } else if (!/^[a-zA-Z\s]+$/.test(firstName.value.trim())) {
+        setError(firstName, "Please enter a valid first name (only alphabets and spaces allowed)");
+      } else {
+        setSuccess(firstName);
+      }
+    }
+
+    function validateLastName() {
+      if (lastName.value.trim() === "") {
+        setError(lastName, "Last name cannot be empty");
+      } else if (!/^[a-zA-Z\s]+$/.test(lastName.value.trim())) {
+        setError(lastName, "Please enter a valid last name (only alphabets and spaces allowed)");
+      } else {
+        setSuccess(lastName);
+      }
+    }
+    function validateEmail() {
+      if (email.value.trim() === "") {
+        setError(email, "Email cannot be empty");
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+        setError(email, "Please enter a valid email id");
+      } else {
+        setSuccess(email);
+      }
+    }
+
+    function validatePassword() {
+      if (password.value.trim() === "") {
+        setError(password, "Password cannot be empty");
+      } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password.value.trim())) {
+        setError(password, "Password should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.");
+      } else {
+        setSuccess(password);
+      }
+    }
+     function validateConfirmPassword() {
+      if (confirmPassword.value.trim() === "") {
+        setError(confirmPassword, "Confirm password cannot be empty");
+      } else if (confirmPassword.value.trim() !== password.value.trim()) {
+        setError(confirmPassword, "Passwords do not match");
+      } else {
+        setSuccess(confirmPassword);
+      }
+    }
+
+    function validateGender() {
+      let isGenderSelected = false;
+      genderOptions.forEach(option => {
+        if (option.checked) {
+          isGenderSelected = true;
+        }
+        });
+      if (!isGenderSelected) {
+        setError(genderOptions[0], "Please select a gender");
+      } else {
+        setSuccess(genderOptions[0]);
+      }
+    }
+
+    function validatePreferredLanguage() {
+      if (preferredLanguageSelect.value === "") {
+        setError(preferredLanguageSelect, "Please select a preferred language");
+      } else {
+        setSuccess(preferredLanguageSelect);
+      }
+    }
+
+    function validateInterests() {
+      if (interestsTextArea.value.trim() === "") {
+        setError(interestsTextArea, "Interests cannot be empty");
+      } else if (interestsTextArea.value.trim().length > 100) {
+        setError(interestsTextArea, "Interests should be at most 100 characters long");
+      } else {
+        setSuccess(interestsTextArea);
+      }
+    }
+
+    function validateTermsCheckbox() {
+      if (!termsCheckbox.checked) {
+        setError(termsCheckbox, "Please agree to the terms and conditions");
+      } else {
+        setSuccess(termsCheckbox);
+      }
+    }
+
+    function setError(element, errorMessage) {
+      const parent = element.parentElement;
+      parent.classList.add('error');
+      const errorMessageElement = parent.querySelector('.error-message');
+      errorMessageElement.textContent = errorMessage;
+      errorMessageElement.style.display = 'block';
+    }
+
+    function setSuccess(element) {
+      const parent = element.parentElement;
+      parent.classList.remove('error');
+      parent.classList.add('success');
+      const errorMessageElement = parent.querySelector('.error-message');
+      errorMessageElement.style.display = 'none';
+    }
+
+
+
+
+ </script>
+    
+  
+  
+   <div class="image-banner-container cycle-slideshow" data-cycle-slides=".slide" data-cycle-pause-on-hover="true">
+        <span class="cycle-prev">&laquo</span>
+        <span class="cycle-next">&raquo</span>
+        <span class="cycle-pager"></span>
+   
+        <div class="slide">
+            <img src="taskimages/hippo.jpg" alt="hippo">
+            <div class="slide-text">
+                <h3> Hippo here! </h3>
+                <p>Yes, I am hippo <a href="#" class="btn-a"> Click here!</a></p>
+            </div>
+        </div>
+   
+        <div class="slide">
+            <img src="taskimages/antelope.jpg" alt="antelope">
+            <div class="slide-text">
+                <h3>Antelope here! </h3>
+                <p>Yes, I am antelope <a href="#" class="btn-a"> Click here!</a> </p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="taskimages/ostrich.jpg">
+            <div class="slide-text">
+               <h3>Ostrich here! </h3>
+               <p>Yes, I am ostrich <a href="#" class="btn-a"> Click here!</a> </p>
+        </div>
+      </div>
+   
+  
+   
+  
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+      
+
