@@ -1,5 +1,7 @@
+import Script from 'next/script';
 import '../styles/globals.css'
 import Head from 'next/head'
+
 
 
 function MyApp({ Component, pageProps }) {
@@ -7,6 +9,12 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
     <Head>
+    <Script       
+    src={`https://cdn-cookieyes.com/client_data/ccdbc21850f2d20b8687da96/script.js`}>
+    </Script>
+    strategy="beforeInteractive"
+
+
     <meta charset="UTF-8" />
   <meta name="description" content="Atanu Blog App" />
   <meta name="keywords" content="HTML, CSS, JavaScript" />
